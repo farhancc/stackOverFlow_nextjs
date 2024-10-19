@@ -9,6 +9,7 @@ import {
 import "./globals.css";
 import React from "react";
 import { Inter, Space_Grotesk } from "next/font/google";
+import { ThemeProvider } from "@/contexts/ThemeProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -47,13 +48,15 @@ export default function RootLayout({
         <body
           className={`${inter.variable} ${spaceGrotesk.variable} antialiased`}
         >
-          <SignedOut>
-            <SignInButton />
-          </SignedOut>
-          <SignedIn>
-            <UserButton />
-          </SignedIn>
-          {children}
+          <ThemeProvider>
+            <SignedOut>
+              <SignInButton />
+            </SignedOut>
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
+            {children}
+          </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>
